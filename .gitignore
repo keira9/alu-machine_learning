@@ -3,7 +3,11 @@
 !README.md
 !math/
 !math/plotting/
-!math/plotting/*# Miscellaneous
+!math/plotting/*
+!math/advanced_linear_algebra/
+!math/advanced_linear_algebra/*
+
+# Miscellaneous
 *.class
 *.log
 *.pyc
