@@ -1,4 +1,8 @@
-# Miscellaneous
+/*
+!.gitignore
+!math/
+!math/plotting/
+!math/plotting/*# Miscellaneous
 *.class
 *.log
 *.pyc
