@@ -1,5 +1,6 @@
 /*
 !.gitignore
+!README.md
 !math/
 !math/plotting/
 !math/plotting/*# Miscellaneous
