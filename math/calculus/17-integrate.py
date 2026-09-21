@@ -12,8 +12,9 @@ def poly_integral(poly, C=0):
     integral = [C]
     integral.extend(coefficient / (power + 1)
                     for power, coefficient in enumerate(poly))
-    integral = [int(coefficient) if coefficient.is_integer() else coefficient
-                if isinstance(coefficient, float) else coefficient
+    integral = [int(coefficient)
+                if isinstance(coefficient, float) and coefficient.is_integer()
+                else coefficient
                 for coefficient in integral]
     while len(integral) > 1 and integral[-1] == 0:
         integral.pop()
