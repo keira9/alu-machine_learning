@@ -5,19 +5,6 @@ PI = 3.1415926536
 E = 2.7182818285
 
 
-def erf_approx(value):
-    """Approximate the error function without external modules."""
-    sign = 1
-    if value < 0:
-        sign = -1
-    value = abs(value)
-    t_value = 1 / (1 + 0.3275911 * value)
-    polynomial = (((((1.061405429 * t_value - 1.453152027) * t_value +
-                     1.421413741) * t_value - 0.284496736) * t_value +
-                   0.254829592) * t_value)
-    return sign * (1 - polynomial * E ** (-value ** 2))
-
-
 class Normal:
     """Represent a normal distribution."""
 
@@ -53,5 +40,8 @@ class Normal:
 
     def cdf(self, x):
         """Calculate the cumulative probability through x."""
-        z = (x - self.mean) / (self.stddev * 2 ** 0.5)
-        return (1 + erf_approx(z)) / 2
+        value = (x - self.mean) / (self.stddev * 2 ** 0.5)
+        erf = value - value ** 3 / 3 + value ** 5 / 10
+        erf = erf - value ** 7 / 42 + value ** 9 / 216
+        erf *= 2 / PI ** 0.5
+        return (1 + erf) / 2
