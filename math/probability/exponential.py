@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Exponential distribution."""
+"""Exponential distribution functions."""
 
-from math import exp
+E = 2.7182818285
 
 
 class Exponential:
     """Represent an exponential distribution."""
 
     def __init__(self, data=None, lambtha=1.):
+        """Initialize the distribution from data or a rate."""
         if data is None:
             self.lambtha = float(lambtha)
             if self.lambtha <= 0:
@@ -23,10 +24,10 @@ class Exponential:
         """Calculate the probability density at x."""
         if x < 0:
             return 0
-        return self.lambtha * exp(-self.lambtha * x)
+        return self.lambtha * E ** (-self.lambtha * x)
 
     def cdf(self, x):
         """Calculate the cumulative probability through x."""
         if x < 0:
             return 0
-        return 1 - exp(-self.lambtha * x)
+        return 1 - E ** (-self.lambtha * x)

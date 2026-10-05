@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Binomial distribution."""
-
-from math import factorial
+"""Binomial distribution functions."""
 
 
 class Binomial:
     """Represent a binomial distribution."""
 
     def __init__(self, data=None, n=1, p=0.5):
+        """Initialize the distribution from data or parameters."""
         if data is None:
             self.n = int(n)
             self.p = float(p)
@@ -32,7 +31,9 @@ class Binomial:
             k = int(k)
         if k < 0 or k > self.n:
             return 0
-        combinations = factorial(self.n) / (factorial(k) * factorial(self.n - k))
+        combinations = 1
+        for index in range(1, min(k, self.n - k) + 1):
+            combinations = combinations * (self.n - index + 1) / index
         return combinations * self.p ** k * (1 - self.p) ** (self.n - k)
 
     def cdf(self, k):

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Poisson distribution."""
+"""Poisson distribution functions."""
 
-from math import exp, factorial
+E = 2.7182818285
 
 
 class Poisson:
     """Represent a Poisson distribution."""
 
     def __init__(self, data=None, lambtha=1.):
+        """Initialize the distribution from data or a rate."""
         if data is None:
             self.lambtha = float(lambtha)
             if self.lambtha <= 0:
@@ -25,7 +26,10 @@ class Poisson:
             k = int(k)
         if k < 0:
             return 0
-        return (self.lambtha ** k * exp(-self.lambtha)) / factorial(k)
+        factorial = 1
+        for value in range(1, k + 1):
+            factorial *= value
+        return (self.lambtha ** k * E ** -self.lambtha) / factorial
 
     def cdf(self, k):
         """Calculate the cumulative probability through k successes."""
